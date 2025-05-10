@@ -1,19 +1,17 @@
 import streamlit as st
 
-from custom_components.my_component import my_component
+from custom_components.percentage_component import percentage_component
 
-st.write("hello world")
+col1, col2, col3 = st.columns(3)
 
-st.subheader("Component with constant args")
+with col1:
+  num1 = st.number_input("Enter a number", min_value=0, max_value=100, value=30, key="num1")
+  percentage_component(percentage=num1, key="1")
 
-# Create an instance of our component with a constant `name` arg, and
-# print its output value.
-num_clicks = my_component("World")
-st.markdown("You've clicked %s times!" % int(num_clicks))
+with col2:
+  num2 = st.number_input("Enter a number", min_value=0, max_value=100, value=60, key="num2")
+  percentage_component(percentage=num2, key="2")
 
-st.markdown("---")
-st.subheader("Component with variable args")
-
-name_input = st.text_input("Enter a name", value="Streamlit")
-num_clicks = my_component(name_input, key="foo")
-st.markdown("You've clicked %s times!" % int(num_clicks))
+with col3:
+  num3 = st.number_input("Enter a number", min_value=0, max_value=100, value=80, key="num3")
+  percentage_component(percentage=num3, key="3")
