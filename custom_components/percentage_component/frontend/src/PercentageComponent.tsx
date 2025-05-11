@@ -6,7 +6,7 @@ import {
 import React, { useEffect, ReactElement, useState } from "react"
 
 function PercentageComponent({ args }: ComponentProps): ReactElement {
-  const { percentage } = args
+  const { percentage, label } = args
   const [currentPercentage, setCurrentPercentage] = useState(0);
 
   useEffect(() => {
@@ -49,16 +49,19 @@ function PercentageComponent({ args }: ComponentProps): ReactElement {
 
   return (
     <div style={{
-      textAlign: "center",
-      padding: "10px",
-      border: `2px solid ${color}`,
-      borderRadius: "10px",
+      padding: "18px 14px",
+      border: `1px solid ${color}`,
+      borderRadius: "0.5rem",
       width: "100%",
       background: `linear-gradient(to right, ${color} ${currentPercentage}%, transparent ${currentPercentage}%)`, // Gradient background
+      fontFamily: 'Source Sans Pro',
     }}>
-      <span style={{ fontSize: "24px", fontWeight: "bold" }}>
+      <div style={{ position: "fixed", top: "10px", width: "100%", fontSize: "0.875rem"}}>
+        {label}
+      </div>
+      <div style={{ fontSize: "2.25rem", fontWeight: "300", position: "relative", top: "5px" }}>
         {currentPercentage.toFixed(1)}%
-      </span>
+      </div>
     </div>
   )
 }
